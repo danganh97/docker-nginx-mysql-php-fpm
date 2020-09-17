@@ -1,0 +1,35 @@
+nginx:
+    build: ./images/nginx
+    working_dir: /var/www/html
+    dockerfile: Dockerfile
+    container_name: real_nginx
+    ports:
+        - "80:80"
+    volumes:
+        - ./projects:/var/www/html
+        - ./logs/nginx_log:/var/log/nginx
+        - ./config/nginx/project1.conf:/etc/nginx/conf.d/project1.conf
+        - ./config/nginx/project2.conf:/etc/nginx/conf.d/project2.conf
+    links:
+        - php
+        - mysql
+
+php:
+    build: ./images/php
+    dockerfile: Dockerfile
+    container_name: real_php
+    volumes:
+        - ./projects:/var/www/html
+        - ./logs/php-fpm/php-fpm.log:/var/log/php-fpm.log
+        - ./config/php-fpm/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+
+mysql:
+    build: ./images/mysql
+    dockerfile: Dockerfile
+    container_name: real_mysql
+    ports:
+        - "3306:3306"
+    volumes:
+        - ./data/mysql:/var/lib/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: password

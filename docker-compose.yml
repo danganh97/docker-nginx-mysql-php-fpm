@@ -2,6 +2,9 @@ version: "3"
 
 services:
   nginx:
+    dns:
+      - 8.8.8.8
+      - 4.4.4.4
     build:
       context: ./images/nginx
       dockerfile: Dockerfile

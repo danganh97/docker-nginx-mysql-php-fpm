@@ -4,7 +4,12 @@
     docker-compose up -d --build
 ```
 
-Note: Container running with `nginx`, `php-fpm7.4`, `mysql5.6` with port `3306`, `root` password is `password`
+Note: Container is running with
+- nginx
+- php-fpm7.4
+- mysql5.6
+
+Mysql is using port `3306`, The password of `root` user is *`password`*
 
 Wanna use other php version ? Please change only `images/php.Dockerfile` file.
 

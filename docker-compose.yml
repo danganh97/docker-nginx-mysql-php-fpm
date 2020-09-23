@@ -6,8 +6,8 @@ services:
       - 8.8.8.8
       - 4.4.4.4
     build:
-      context: ./images/nginx
-      dockerfile: Dockerfile
+      context: ./images
+      dockerfile: nginx.Dockerfile
     working_dir: /var/www/html
     container_name: real_nginx
     ports:
@@ -23,8 +23,8 @@ services:
 
   php:
     build:
-      context: ./images/php
-      dockerfile: Dockerfile
+      context: ./images
+      dockerfile: php.Dockerfile
     container_name: real_php
     volumes:
       - ./projects:/var/www/html
@@ -33,8 +33,8 @@ services:
 
   mysql:
     build:
-      context: ./images/mysql
-      dockerfile: Dockerfile
+      context: ./images
+      dockerfile: mysql.Dockerfile
     container_name: real_mysql
     ports:
       - "3306:3306"
